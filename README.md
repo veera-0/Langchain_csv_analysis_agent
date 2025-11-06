@@ -106,16 +106,5 @@ python .\mcp_client\agent.py
 
 By default, `agent.py` runs an example query in `main()` — you can modify the `question` variable or adapt the client to accept CLI args.
 
-## Known issue & recommended small fix
 
-While analyzing the project, the client currently references the server script as `..\mcp_server\csv.server.py` and invokes the `python` command string. The actual server file in this repo is `csv_server.py` (underscore). On Windows this mismatch will cause the client to fail to spawn the server.
-
-Recommended change in `mcp_client/agent.py` (small, safe):
-
-```python
-server_script_path = r"..\mcp_server\csv.server.py"
-command="python"
-```
-
-If you prefer to start the server manually (recommended while developing), run `python mcp_server/csv_server.py` in its own terminal and the client will connect to a started server (depending on how stdio_client is used).
 
