@@ -94,7 +94,7 @@ Start the server in one terminal. From the repository root run:
 python .\mcp_server\csv_server.py
 ```
 
-The server exposes a set of tools for CSV inspection such as `tool_schema`, `tool_nulls`, `tool_describe`, `tool_head`, `tool_value_counts`, and more.
+The server exposes a set of tools for CSV inspection such as `tool_schema`, `tool_nulls`, `tool_describe`, `tool_head`, `tool_value_counts`.
 
 ## Run the LangChain client agent
 
@@ -112,22 +112,10 @@ While analyzing the project, the client currently references the server script a
 
 Recommended change in `mcp_client/agent.py` (small, safe):
 
-1) Change the path to the server script from:
-
 ```python
 server_script_path = r"..\mcp_server\csv.server.py"
 command="python"
 ```
-
-to:
-
-```python
-import sys
-server_script_path = r"..\mcp_server\csv_server.py"
-command = sys.executable
-```
-
-Using `sys.executable` ensures the same Python interpreter (the venv) is used to spawn the stdio server and avoids PATH / multiple-Python issues.
 
 If you prefer to start the server manually (recommended while developing), run `python mcp_server/csv_server.py` in its own terminal and the client will connect to a started server (depending on how stdio_client is used).
 
